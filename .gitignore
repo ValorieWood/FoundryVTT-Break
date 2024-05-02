@@ -1,6 +1,10 @@
 # IDE
 .idea/
+.nova/
 .vs/
+.vscode/
+*.code-workspace
+*.iml
 
 # Node Modules
 node_modules/
@@ -8,3 +12,15 @@ package-lock.json
 
 break.lock
 releases/
+
+# Build Artifacts
+break.css
+break-compiled*
+break.lock
+packs/*
+!packs/_source/
+
+# OS Specific
+.DS_Store
+
+
