@@ -1,6 +1,6 @@
 {
   "name": "break",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "CSS compiler for the BREAK!! system",
   "scripts": {
     "build": "npm run build:code && npm run build:css && npm run build:db",

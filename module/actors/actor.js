@@ -12,6 +12,10 @@ export class BreakActor extends Actor {
     super.prepareDerivedData();
   }
 
+  async resetCalling() {
+
+  }
+
   async setAptitudeTrait(aptitudeKey, traitValue) {
     const updates = {};
     updates[`system.aptitudes.${aptitudeKey}.trait`] = traitValue;
@@ -48,7 +52,7 @@ export class BreakActor extends Actor {
   }
 
   async rollAttack(bonus, extraDamage) {
-    const attack = +this.system.attack.value + +this.system.attack.bon + +bonus;
+    const attack = +this.system.attack.base + +this.system.attack.bon + +bonus;
     const flavor = game.i18n.format("BREAK.Attack");
     new Dialog({
       title: "Roll attack",

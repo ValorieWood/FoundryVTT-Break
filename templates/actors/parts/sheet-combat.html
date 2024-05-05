@@ -10,14 +10,14 @@
                 </div>
                 <div class="aptitude-base-container">
                     <label style="text-transform: uppercase;">{{localize "BREAK.Base"}}</label>
-                    <input name="system.attack.value" type="number" class="aptitude-base-circle" style="text-align: center;" value="{{actor.system.attack.value}}" placeholder="0"/>
+                    <input name="system.attack.base" type="number" class="aptitude-base-circle" style="text-align: center;" value="{{actor.system.attack.base}}" placeholder="0"/>
                 </div>
             </div>
             <div style="display: flex; align-items: center;">
                 <div class="combat-value-circle clickable">
                     <div class="aptitude-value-inner-circle">
                         <p class="aptitude-base-value">
-                            {{sum actor.system.attack.value actor.system.attack.bon 0}}
+                            {{sum actor.system.attack.base actor.system.attack.bon 0}}
                         </p>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="aptitude-base-container">
                     <label style="text-transform: uppercase;">{{localize "BREAK.Base"}}</label>
-                    <input name="system.defense.value" type="number" class="aptitude-base-circle" style="text-align: center;" value="{{actor.system.defense.value}}" placeholder="0"/>
+                    <input name="system.defense.base" type="number" class="aptitude-base-circle" style="text-align: center;" value="{{actor.system.defense.base}}" placeholder="0"/>
                 </div>
             </div>
             <div style="display: flex; align-items: center;">

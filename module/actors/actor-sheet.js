@@ -9,6 +9,9 @@ const allowedItemTypes = ["quirk", "ability", "gift", "weapon", "armor"]
  */
 export class BreakActorSheet extends ActorSheet {
 
+  //testSpecies = actor.system.species_list[2].label;
+  //localizedSpecies = actor.system.species_list.map(species => game.i18n.localize(species.label));
+
   /** @inheritdoc */
   static get defaultOptions() {
     this.selectedBag = null;
@@ -65,7 +68,12 @@ export class BreakActorSheet extends ActorSheet {
 
   /** @inheritdoc */
   async getData(options) {
+    //getDataCount++;
+
     const context = await super.getData(options);
+
+    //context.getDataCount = getDataCount;
+
     context.shorthand = !!game.settings.get("break", "macroShorthand");
     context.biographyHTML = await TextEditor.enrichHTML(context.actor.system.biography, {
       secrets: this.document.isOwner,
@@ -73,6 +81,7 @@ export class BreakActorSheet extends ActorSheet {
     });
 
     context.actor.system.hearts.value = context.actor.system.hearts.value ?? context.actor.system.hearts.max;
+
     for(let i = 0; i < RANK_XP.length; i++){
       if(RANK_XP[i] <= context.actor.system.xp.current){
         context.rank = i+1;
@@ -81,6 +90,36 @@ export class BreakActorSheet extends ActorSheet {
         break;
       }
     }
+
+    let calling_id = context.actor.system.calling.value;
+    let previous_calling_id = context.actor.system.calling.previous;
+
+    let calling_changed = calling_id != previous_calling_id;
+    if (calling_changed) {
+      console.log("Calling changed from " + previous_calling_id + " to " + calling_id)
+      /*
+          const updates = {};
+    updates[`system.equipment.${type}`] = null;
+    this.actor.update(updates);
+    context.actor.system.calling.previous = calling_id;
+      */
+    }
+
+    let calling = context.actor.system.calling_list[calling_id];
+    context.actor.system.aptitudes.might.base = calling.stats.might;
+    context.actor.system.aptitudes.deftness.base = calling.stats.deftness;
+    context.actor.system.aptitudes.grit.base = calling.stats.grit;
+    context.actor.system.aptitudes.insight.base = calling.stats.insight;
+    context.actor.system.aptitudes.aura.base = calling.stats.aura;
+
+    context.actor.system.attack.base = calling.stats.attack;
+    context.actor.system.defense.base = calling.stats.defense;
+    context.actor.system.hearts.max = calling.stats.hearts;
+    context.actor.system.speed.value = calling.stats.speed;
+
+    // Reset player hearts so they don't exceed maximum, in case that changed
+    let maxHearts = context.actor.system.hearts.max + context.actor.system.hearts.bon;
+    context.actor.system.hearts.value = Math.min(context.actor.system.hearts.value, maxHearts);
 
     context.abilities = context.actor.items.filter(i => i.type === "ability");
     context.gifts = context.actor.items.filter(i => i.type === "gift");
@@ -99,7 +138,7 @@ export class BreakActorSheet extends ActorSheet {
     });
 
     context.attackBonus = context.actor.system.attack.value + context.actor.system.attack.bon;
-    context.defenseRating = +context.actor.system.defense.value + +context.actor.system.defense.bon + (context.actor.system.equipment.armor ? +context.actor.system.equipment.armor.system.defenseBonus : 0)
+    context.defenseRating = +context.actor.system.defense.base + +context.actor.system.defense.bon + (context.actor.system.equipment.armor ? +context.actor.system.equipment.armor.system.defenseBonus : 0)
     context.speedRating = context.actor.system.speed.value + context.actor.system.speed.bon;
     if(context.actor.system.equipment.armor && context.actor.system.equipment.armor.system.speedLimit != null && context.actor.system.equipment.armor.system.speedLimit != "") {
       context.speedRating = +context.actor.system.equipment.armor.system.speedLimit < context.speedRating ? +context.actor.system.equipment.armor.system.speedLimit : context.speedRating;
@@ -120,6 +159,21 @@ export class BreakActorSheet extends ActorSheet {
     context.bagContent = context.actor.items.filter(i => !["ability", "quirk", "gift"].includes(i.type)
     && !equippedItemIds.includes(i._id) && i.bag == this.selectedBag).map(i => ({...i, _id: i._id, equippable: ["armor", "weapon", "outfit", "accesory", "shield"].includes(i.type)}));
     context.freeInventorySlots = context.actor.system.slots - context.bagContent.reduce((ac, cv) => ac + cv.system.slots, 0);
+
+    // context.actor.system.calling_list.map(calling => {
+    //   calling.label += "alsdkjf";
+    //   return calling;
+    // })
+
+    //context.actor.system.calling_list.foreach(c => {console.log(c.label)});
+
+    // for (let [calling] of Object.values(context.actor.system.calling_list)) {
+    //   //calling.label = calling.label + " do localize";
+    // }
+
+    // for (let [calling] of Object.values(context.actor.system.calling_list)) {
+    //   calling.label = game.i18n.localize(calling.label);
+    // }
 
     return context;
   }
@@ -159,6 +213,14 @@ export class BreakActorSheet extends ActorSheet {
         let dragData = ev.currentTarget.dataset;
         ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
       }, false);
+    });
+
+    let selectCalling = document.getElementById('selectcalling');
+    selectCalling.addEventListener('change', function(event) {
+      let selectedCalling = event.target.value;
+      console.log("Event fired, selected calling: " + selectedCalling);
+      // TODO: figure this bit out
+      //this.actor.update({"system.calling.previous": this.actor.get("system.calling.value")})
     });
   }
 

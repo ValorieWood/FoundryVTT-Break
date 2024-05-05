@@ -130,8 +130,8 @@ function cleanString(str) {
  * @param {string} [entryName]  Name of a specific entry to clean.
  *
  * - `npm run build:clean` - Clean all source JSON files.
- * - `npm run build:clean -- classes` - Only clean the source files for the specified compendium.
- * - `npm run build:clean -- classes Barbarian` - Only clean a single item from the specified compendium.
+ * - `npm run build:clean -- callings` - Only clean the source files for the specified compendium.
+ * - `npm run build:clean -- callings Factotum` - Only clean a single item from the specified compendium.
  */
 async function cleanPacks(packName, entryName) {
   entryName = entryName?.toLowerCase();

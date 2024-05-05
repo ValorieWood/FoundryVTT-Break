@@ -12,13 +12,25 @@
     <div class="input root">
         <label>{{ localize 'BREAK.Calling' }}</label>
         <div class="input wrapper">
-            <input name="system.calling" type="text" value="{{actor.system.calling}}" placeholder="{{ localize 'BREAK.Calling' }}"/>
+            <select id="selectcalling" class="selectcalling" name="system.calling.value" data-type="String">
+                {{#select actor.system.calling.value}}
+                    {{#each actor.system.calling_list as |calling key|}}
+                    <option value="{{key}}">{{ localize calling.label }}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
         </div>
     </div>
     <div class="input root">
         <label>{{ localize 'BREAK.Species' }}</label>
         <div class="input wrapper">
-            <input name="system.species" type="text" value="{{actor.system.species}}" placeholder="{{ localize 'BREAK.Species' }}"/>
+            <select id="selectspecies" class="selectspecies" name="system.species.value" data-type="String">
+                {{#select actor.system.species.value}}
+                    {{#each actor.system.species_list as |species key|}}
+                    <option value="{{key}}">{{ localize species.label }}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
         </div>
     </div>
     <div class="input root">
