@@ -100,6 +100,7 @@
     },
 
     "Species": "Species",
+    "Size": "Size",
     "SPECIES": {
       "Human_Native": "Human (Native)",
       "Human_Dimensional_Stray": "Human (Dimensional Stray)",
@@ -111,12 +112,100 @@
       "Goblin": "Goblin",
       "Dwarf": "Dwarf",
       "Elf": "Elf",
-      "Bio_Mechanoid": "Bio-Mechanoid"
+      "Bio_Mechanoid": "Bio-Mechanoid",
+      "SIZE": {
+        "Small": "Small",
+        "Medium": "Medium",
+        "Large": "Large"
+      }
+    },
+    
+    "Homeland": "Homeland",
+    "History": "History",
+    "HOMELAND": {
+      "Wistful_Dark": "Wistful Dark",
+      "Twilight_Meridian": "Twilight Meridian",
+      "Blazing_Garden": "Blazing Garden",
+      "Buried_Kingdom": "Buried Kingdom",
+      "Other_World": "Other World",
+
+      "HISTORY": {
+        "Outcasts": "Outcasts",
+        "Commoners": "Commoners",
+        "Elite": "Elite",
+
+        "WISTFUL_DARK": {
+          "Forsaken_Wanderer": "Forsaken Wanderer",
+          "Blight_Raider": "Blight Raider",
+          "Shadow_Lands_Nomad": "Shadow Lands Nomad",
+          "Murk_Dweller": "Murk Dweller",
+          "Nightwall_Yeoman": "Nightwall Yeoman",
+          "Starlight_Farmer": "Starlight Farmer",
+          "Guild_Agent": "Guild Agent",
+          "Town_Guard": "Town Guard",
+          "Celebrated_Artist": "Celebrated Artist",
+          "Magia_University_Graduate": "Magia University Graduate",
+          "Knight_Errant": "Knight Errant",
+          "Shard_State_Patrician": "Shard State Patrician"
+        },
+        "TWILIGHT_MERIDIAN": {
+          "Disgraced_Scion": "Disgraced Scion",
+          "Shadow_Sea_Pirate": "Shadow Sea Pirate",
+          "Orphaned_Shinobi": "Orphaned Shinobi",
+          "Oldtech_Junker": "Oldtech Junker",
+          "Twilight_Silk_Tailor": "Twilight Silk Tailor",
+          "Medicine_Peddler": "Medicine Peddler",
+          "Shining_Sea_Fisherman": "Shining Sea Fisherman",
+          "Portian_University_Graduate": "Portian University Graduate",
+          "Merchant_Scion": "Merchant Scion",
+          "Holy_Isle_Samurai": "Holy Isle Samurai",
+          "Archive_Researcher": "Archive Researcher",
+          "Black_Glove_Cavalier": "Black Glove Cavalier"
+        },
+        "BLAZING_GARDEN": {
+          "Kinless_Vagrant": "Kinless Vagrant",
+          "Monster_Slayer": "Monster Slayer",
+          "Street_Rat": "Street Rat",
+          "Thunda_Clan_Barbarian": "Thunda Clan Barbarian",
+          "Beast_Handler": "Beast Handler",
+          "Village_Runner": "Village Runner",
+          "Jubilant_Performer": "Jubilant Performer",
+          "City_Scrivener": "City Scrivener",
+          "Emissary_Of_Sol": "Emissary of Sol",
+          "Wyrm_Blooded": "Wyrm Blooded",
+          "Hinterlands_Noble": "Hinterlands Noble",
+          "Startech_Adept": "Startech Adept"
+        },
+        "BURIED_KINGDOM": {
+          "Tunnel_Crawler": "Tunnel Crawler",
+          "Ruin_Scavenger": "Ruin Scavenger",
+          "War_Deserter": "War Deserter",
+          "Moss_Scraper": "Moss Scraper",
+          "Underland_Soldier": "Underland Soldier",
+          "Honored_Laborer": "Honored Laborer",
+          "Forge_Hand": "Forge Hand",
+          "Field_Sapper": "Field Sapper",
+          "Record_Etcher": "Record Etcher",
+          "Comrade_Agitator": "Comrade Agitator",
+          "Resolute_Overseer": "Resolute Overseer",
+          "Apprentice_Thinker": "Apprentice Thinker"
+        },
+        "OTHER_WORLD": {
+          "Transient": "Transient",
+          "NEET": "NEET",
+          "Retail_Servce": "Retail/Servce",
+          "Blue_Collar": "Blue Collar",
+          "White_Collar": "White Collar",
+          "Domestic": "Domestic",
+          "Military_Law_Enforcement": "Military/Law Enforcement",
+          "Education_Faculty": "Education, Faculty",
+          "Education_Student": "Education, Student",
+          "Idle_Rich": "Idle Rich"
+        }
+      }
     },
 
-    "Homeland": "Homeland",
     "Languages": "Languages",
-    "History": "History",
     "Description": "Description",
     "Purviews": "Purviews",
     "Base": "Base",

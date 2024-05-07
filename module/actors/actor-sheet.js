@@ -97,25 +97,34 @@ export class BreakActorSheet extends ActorSheet {
     let calling_changed = calling_id != previous_calling_id;
     if (calling_changed) {
       console.log("Calling changed from " + previous_calling_id + " to " + calling_id)
-      /*
-          const updates = {};
-    updates[`system.equipment.${type}`] = null;
-    this.actor.update(updates);
-    context.actor.system.calling.previous = calling_id;
-      */
     }
 
+    let species_id = context.actor.system.species.value;
+    console.log("Species Id: " + species_id);
+    let species = context.actor.system.species_list[species_id];
+    console.log("Species label: " + species.label);
+    console.log("Species size: " + species.size);
+
+    let size = context.actor.system.size_list[species.size];
+
     let calling = context.actor.system.calling_list[calling_id];
-    context.actor.system.aptitudes.might.base = calling.stats.might;
-    context.actor.system.aptitudes.deftness.base = calling.stats.deftness;
+    context.actor.system.aptitudes.might.base = calling.stats.might + size.might;
+    context.actor.system.aptitudes.deftness.base = calling.stats.deftness + size.deftness;
     context.actor.system.aptitudes.grit.base = calling.stats.grit;
     context.actor.system.aptitudes.insight.base = calling.stats.insight;
     context.actor.system.aptitudes.aura.base = calling.stats.aura;
 
     context.actor.system.attack.base = calling.stats.attack;
-    context.actor.system.defense.base = calling.stats.defense;
+    context.actor.system.defense.base = calling.stats.defense + size.defense;
     context.actor.system.hearts.max = calling.stats.hearts;
     context.actor.system.speed.value = calling.stats.speed;
+
+    context.size = size.label;
+
+    let homeland_id = context.actor.system.homeland.value;
+    console.log("Homeland Id: " + homeland_id);
+    let homeland = context.actor.system.homeland_list[homeland_id];
+    context.history_list = homeland.history_list;
 
     // Reset player hearts so they don't exceed maximum, in case that changed
     let maxHearts = context.actor.system.hearts.max + context.actor.system.hearts.bon;
